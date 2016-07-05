@@ -30,6 +30,6 @@
 	/*
 		Una vez finalizado esto se avisa al usuario que el archivo fue guardado con un echo
 	*/
-	echo "Archivo Guardado";
+	echo "1";
 
 ?>
