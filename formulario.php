@@ -11,11 +11,18 @@
 		<button type="button" id="guardar"> Guardar Archivo</button>
 		<button type="button" id="leer"> Leer Archivo</button>
 		<button type="button" id="ocultar" hidden="hidden"> Ocultar Lectura</button>
+		<button type="button" id="eliminar"> Eliminar Archivo</button>
+		<button type="button" id="ocultareliminar" hidden="hidden">Ocultar</button>
 	</form>
+
 	<br/>
 	<div id="lecturaarchivo" >
-		
-		
+	</div>
+	<div id="eliminararchivo" hidden="hidden">		
+		<form action="eliminar.php" method="post" name="form">
+			<input type="file" name="archivo" id="archivo"> <br/><br/>
+			<button type="submit" id="borrar"> Eliminar</button>
+		</form>
 	</div>
 </body>
 <script>
@@ -49,15 +56,19 @@
 				type:"POST",
 				url:"leer.php",
 				success:function(data){
+
 					$('#lecturaarchivo').removeAttr("hidden","hidden");
 					$('#lecturaarchivo').html(data);
 					$('#leer').attr("hidden","hidden");
+
 					$('#ocultar').removeAttr("hidden","hidden");
 
+					$('#eliminararchivo').attr("hidden","hidden");
+					$('#eliminar').removeAttr("hidden","hidden");
+					$('#ocultareliminar').attr("hidden","hidden");
+
 				}
-
 			});
-
 		});
 
 		$('#ocultar').click(function(){
@@ -66,6 +77,27 @@
 			$('#leer').removeAttr("hidden","hidden");
 			$('#lecturaarchivo').attr("hidden","hidden");
 
+			$('#eliminararchivo').attr("hidden","hidden");
+			$('#eliminar').removeAttr("hidden","hidden");
+			$('#ocultareliminar').attr("hidden","hidden");
+		});
+
+		$('#eliminar').click(function(){
+
+			$('#ocultar').attr("hidden","hidden");
+			$('#leer').removeAttr("hidden","hidden");
+			$('#lecturaarchivo').attr("hidden","hidden");
+
+			$('#eliminararchivo').removeAttr("hidden","hidden");
+			$('#eliminar').attr("hidden","hidden");
+			$('#ocultareliminar').removeAttr("hidden","hidden");
+		});
+
+		$('#ocultareliminar').click(function(){
+
+			$('#eliminararchivo').attr("hidden","hidden");
+			$('#eliminar').removeAttr("hidden","hidden");
+			$('#ocultareliminar').attr("hidden","hidden");
 		});
 
 	});
