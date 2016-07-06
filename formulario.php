@@ -10,7 +10,13 @@
 		<textarea name="comentario" id="comentario"></textarea><br/><br/>
 		<button type="button" id="guardar"> Guardar Archivo</button>
 		<button type="button" id="leer"> Leer Archivo</button>
+		<button type="button" id="ocultar" hidden="hidden"> Ocultar Lectura</button>
 	</form>
+	<br/>
+	<div id="lecturaarchivo" >
+		
+		
+	</div>
 </body>
 <script>
 	$(document).ready(function(){
@@ -31,11 +37,36 @@
 			  contentType: false, 
 		      processData: false,
 			  success: function(prueba){
+			  	alert('se guardo el archivo');
 			  	window.location="formulario.php";
 			  }
 			});
 		});
 
+		$('#leer').click(function(){
+
+			$.ajax({
+				type:"POST",
+				url:"leer.php",
+				success:function(data){
+					$('#lecturaarchivo').removeAttr("hidden","hidden");
+					$('#lecturaarchivo').html(data);
+					$('#leer').attr("hidden","hidden");
+					$('#ocultar').removeAttr("hidden","hidden");
+
+				}
+
+			});
+
+		});
+
+		$('#ocultar').click(function(){
+
+			$('#ocultar').attr("hidden","hidden");
+			$('#leer').removeAttr("hidden","hidden");
+			$('#lecturaarchivo').attr("hidden","hidden");
+
+		});
 
 	});
 </script>
